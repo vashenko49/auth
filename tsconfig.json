@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.build.json",
+
+  "watchOptions": {
+    "watchFile": "priorityPollingInterval",
+    "watchDirectory": "dynamicprioritypolling",
+    "fallbackPolling": "dynamicPriority",
+    "synchronousWatchDirectory": true,
+    "excludeDirectories": ["**/node_modules", "dist"],
+  },
+
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@vashenko49/auth-*": ["libs/*/src"]
+    },
+  }
+}

@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  redis:
+    container_name: redis
+    image: 'bitnami/redis:latest'
+    environment:
+      - REDIS_PORT_NUMBER=7000
+      - REDIS_PASSWORD=redis
+    volumes:
+      - redis_data:/data
+    ports:
+      - '7000:7000'
+
+  redis-commander:
+    depends_on:
+      - redis
+    container_name: redis-commander
+    hostname: redis-commander
+    image: rediscommander/redis-commander:latest
+    build: .
+    restart: always
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=7000
+      - REDIS_PASSWORD=redis
+    ports:
+      - '7002:8081'
+
+volumes:
+  redis_data:

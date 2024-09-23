@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  auth-api:
+    container_name: auth-api
+    restart: always
+    depends_on:
+      - redis
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      args:
+        - NPM_TOKEN=$NPM_TOKEN
+    command:
+      - pnpm
+      - run
+      - start:watch:debug
+    ports:
+      - '3001:3001'
+      - '9229:9229'
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+      - /usr/src/app/apps/api/node_modules
+      - /usr/src/app/libs/core/node_modules
+      - /usr/src/app/libs/api-external/node_modules
+    env_file:
+      - .env

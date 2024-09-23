@@ -1,0 +1,22 @@
+{
+  "name": "@vashenko49/auth-core",
+  "main": "dist/index",
+  "version": "1.0.2",
+  "types": "dist/index",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "pnpm run clean && pnpm run compile",
+    "clean": "rimraf ./dist",
+    "compile": "tsc -p tsconfig.build.json",
+    "prepublishOnly": "pnpm run build"
+  },
+  "devDependencies": {
+    "rimraf": "^5.0.5",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "ts-luxon": "^4.5.0"
+  }
+}

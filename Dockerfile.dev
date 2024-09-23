@@ -1,0 +1,15 @@
+FROM alpine:3.18.2 AS BUILD_IMAGE
+
+ARG NPM_TOKEN
+ENV NPM_TOKEN=$NPM_TOKEN
+
+RUN apk add nodejs=18.18.2-r0 npm
+
+RUN npm install -g pnpm
+
+WORKDIR /usr/src/app
+COPY . .
+
+RUN pnpm install
+RUN pnpm build:core
+RUN pnpm build:api-external

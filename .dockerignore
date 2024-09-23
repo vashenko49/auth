@@ -1,0 +1,5 @@
+.git
+node_modules
+apps/api/node_modules
+libs/api-external/node_modules
+libs/core/node_modules
